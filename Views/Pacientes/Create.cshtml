@@ -1,0 +1,165 @@
+﻿@model ProjectCalidadSoft.Models.Paciente
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Paciente</h4>
+<hr />
+<div class="row d-flex justify-content-center">
+    <div class="col-md-8">
+        <form asp-action="Create">
+
+
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-row"></div>
+            <div id="accordion">
+                <div class="card bg-light">
+                    <div class="card-header">Header</div>
+                    <div class="card-body">
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6 mb-3 ">
+                                <label asp-for="Nombre" class="control-label"></label>
+                                <input asp-for="Nombre" class="form-control" />
+                                <span asp-validation-for="Nombre" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6 mb-3">
+                                <label asp-for="Apellidos" class="control-label"></label>
+                                <input asp-for="Apellidos" class="form-control" />
+                                <span asp-validation-for="Apellidos" class="text-danger"></span>
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label asp-for="Correo" class="control-label"></label>
+                                <input asp-for="Correo" class="form-control" />
+                                <span asp-validation-for="Correo" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="Telefono" class="control-label"></label>
+                                <input asp-for="Telefono" class="form-control" />
+                                <span asp-validation-for="Telefono" class="text-danger"></span>
+                            </div>
+
+
+
+
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="LugarNacimiento" class="control-label"></label>
+                            <input asp-for="LugarNacimiento" class="form-control" />
+                            <span asp-validation-for="LugarNacimiento" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-md-8 mb-3">
+                                <label asp-for="FechaNacimieto" class="control-label"></label>
+                                <input asp-for="FechaNacimieto" class="form-control" />
+                                <span asp-validation-for="FechaNacimieto" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-md-4 mb-3">
+                                <label asp-for="Sexo" class="control-label"></label>
+                                <input asp-for="Sexo" class="form-control" />
+                                <span asp-validation-for="Sexo" class="text-danger"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Ocupacion" class="control-label"></label>
+                            <input asp-for="Ocupacion" class="form-control" />
+                            <span asp-validation-for="Ocupacion" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>   
+            
+            <hr/>
+
+
+            <div class="card bg-light">
+
+                <div class="card-header"> Estatus Paciente </div>
+
+                <div class="card-body">
+
+
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-3">
+                            <label asp-for="TipoPaciente" class="control-label"></label>
+                            <input asp-for="TipoPaciente" class="form-control" />
+                            <span asp-validation-for="TipoPaciente" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group  col-md-6 mb-3">
+                            <label asp-for="TipoSangre" class="control-label"></label>
+                            <input asp-for="TipoSangre" class="form-control" />
+                            <span asp-validation-for="TipoSangre" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-3">
+                            <label asp-for="Peso" class="control-label"></label>
+                            <input asp-for="Peso" class="form-control" />
+                            <span asp-validation-for="Peso" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6 mb-3">
+                            <label asp-for="Altura" class="control-label"></label>
+                            <input asp-for="Altura" class="form-control" />
+                            <span asp-validation-for="Altura" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label asp-for="Estado" class="control-label"></label>
+                            <input asp-for="Estado" class="form-control" />
+                            <span asp-validation-for="Estado" class="text-danger"></span>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+            
+
+            <div class="form-group">
+                <label asp-for="Tutor" class="control-label"></label>
+                <input asp-for="Tutor" class="form-control" />
+                <span asp-validation-for="Tutor" class="text-danger"></span>
+            </div>
+
+            
+            
+           
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
