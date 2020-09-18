@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualBasic.CompilerServices;
-using ProjectCalidadSoft.MODELO;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,11 +10,12 @@ namespace ProjectCalidadSoft.Models
 {
     public partial class Paciente
     {
+        /*
         public Paciente()
         {
             DiagnosticoMedico = new HashSet<DiagnosticoMedico>();
         }
-
+        */
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
@@ -36,7 +37,7 @@ namespace ProjectCalidadSoft.Models
         public string Peso { get; set; }
         public string Altura { get; set; }
 
-        public virtual ICollection<DiagnosticoMedico> DiagnosticoMedico { get; set; }
+       // public virtual ICollection<DiagnosticoMedico> DiagnosticoMedico { get; set; }
 
     }
 }

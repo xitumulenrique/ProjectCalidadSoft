@@ -19,9 +19,11 @@ namespace ProjectCalidadSoft.Controllers
             _context = context;
         }
 
-        // GET: Pacientes
+        // GET: Paciente
         public async Task<IActionResult> Index()
         {
+
+
             return View(await _context.Paciente.ToListAsync());
         }
 

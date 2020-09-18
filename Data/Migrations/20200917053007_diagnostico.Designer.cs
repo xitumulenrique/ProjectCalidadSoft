@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectCalidadSoft.Data;
 
 namespace ProjectCalidadSoft.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200917053007_diagnostico")]
+    partial class diagnostico
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -219,19 +221,6 @@ namespace ProjectCalidadSoft.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("ProjectCalidadSoft.Models.Cie10", b =>
-                {
-                    b.Property<string>("Codigo")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Descripcion")
-                        .HasColumnType("text");
-
-                    b.HasKey("Codigo");
-
-                    b.ToTable("Cie10");
-                });
-
             modelBuilder.Entity("ProjectCalidadSoft.Models.ContactoFamiliar", b =>
                 {
                     b.Property<int?>("Id")
@@ -258,18 +247,19 @@ namespace ProjectCalidadSoft.Data.Migrations
 
             modelBuilder.Entity("ProjectCalidadSoft.Models.DiagnosticoMedico", b =>
                 {
-                    b.Property<string>("CodigoCie10Codigo")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("CodigoCie10")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("IdPacienteId")
+                    b.Property<int>("IdPaciente")
                         .HasColumnType("int");
 
-                    b.HasIndex("CodigoCie10Codigo");
+                    b.Property<int?>("IdPacienteNavigationId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("IdPacienteId");
+                    b.HasIndex("IdPacienteNavigationId");
 
                     b.ToTable("DiagnosticoMedico");
                 });
@@ -384,13 +374,9 @@ namespace ProjectCalidadSoft.Data.Migrations
 
             modelBuilder.Entity("ProjectCalidadSoft.Models.DiagnosticoMedico", b =>
                 {
-                    b.HasOne("ProjectCalidadSoft.Models.Cie10", "CodigoCie10")
+                    b.HasOne("ProjectCalidadSoft.Models.Paciente", "IdPacienteNavigation")
                         .WithMany()
-                        .HasForeignKey("CodigoCie10Codigo");
-
-                    b.HasOne("ProjectCalidadSoft.Models.Paciente", "IdPaciente")
-                        .WithMany()
-                        .HasForeignKey("IdPacienteId");
+                        .HasForeignKey("IdPacienteNavigationId");
                 });
 #pragma warning restore 612, 618
         }

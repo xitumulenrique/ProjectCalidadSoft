@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectCalidadSoft.Data;
 
 namespace ProjectCalidadSoft.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200917054625_Cie10-update")]
+    partial class Cie10update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -258,18 +260,24 @@ namespace ProjectCalidadSoft.Data.Migrations
 
             modelBuilder.Entity("ProjectCalidadSoft.Models.DiagnosticoMedico", b =>
                 {
-                    b.Property<string>("CodigoCie10Codigo")
+                    b.Property<string>("CodigoCie10")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CodigoCie10NavigationCodigo")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("IdPacienteId")
+                    b.Property<int>("IdPaciente")
                         .HasColumnType("int");
 
-                    b.HasIndex("CodigoCie10Codigo");
+                    b.Property<int?>("IdPacienteNavigationId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("IdPacienteId");
+                    b.HasIndex("CodigoCie10NavigationCodigo");
+
+                    b.HasIndex("IdPacienteNavigationId");
 
                     b.ToTable("DiagnosticoMedico");
                 });
@@ -384,13 +392,13 @@ namespace ProjectCalidadSoft.Data.Migrations
 
             modelBuilder.Entity("ProjectCalidadSoft.Models.DiagnosticoMedico", b =>
                 {
-                    b.HasOne("ProjectCalidadSoft.Models.Cie10", "CodigoCie10")
+                    b.HasOne("ProjectCalidadSoft.Models.Cie10", "CodigoCie10Navigation")
                         .WithMany()
-                        .HasForeignKey("CodigoCie10Codigo");
+                        .HasForeignKey("CodigoCie10NavigationCodigo");
 
-                    b.HasOne("ProjectCalidadSoft.Models.Paciente", "IdPaciente")
+                    b.HasOne("ProjectCalidadSoft.Models.Paciente", "IdPacienteNavigation")
                         .WithMany()
-                        .HasForeignKey("IdPacienteId");
+                        .HasForeignKey("IdPacienteNavigationId");
                 });
 #pragma warning restore 612, 618
         }
