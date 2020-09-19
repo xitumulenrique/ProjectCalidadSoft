@@ -4,10 +4,21 @@
     ViewData["Title"] = "Edit";
 }
 
-    <h1> @Model.Nombre</h1>
+<h1> @Model.Nombre</h1>
 
 <h4>Paciente</h4>
 <hr />
+
+    <ul>
+        @foreach (var std in ViewBag.diagnostico as List<ProjectCalidadSoft.Controllers.QueryDiagnostico>)
+        {
+        <li>
+            @std.codigoCie  @std.descripcion  @std.fecha
+        </li>
+        }
+    </ul>
+
+
 
 @*  Navegacion delPaciente *@
 <ul class="nav nav-tabs" id="myTab" role="tablist">

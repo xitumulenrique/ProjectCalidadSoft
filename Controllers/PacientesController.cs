@@ -35,6 +35,26 @@ namespace ProjectCalidadSoft.Controllers
                 return NotFound();
             }
 
+            List<QueryDiagnostico> query = (from diag in _context.Set<DiagnosticoMedico>()
+                         join pacient in _context.Set<Paciente>()
+                             on diag.IdPaciente equals pacient.Id
+                         join cie in _context.Set<Cie10>()
+                             on diag.IdCie10 equals cie.Codigo
+                         where (pacient.Id == id)
+
+                         select new QueryDiagnostico
+                         {
+                             descripcion = cie.Descripcion,
+                             fecha = diag.Fecha,
+                             codigoCie = cie.Codigo,
+                             codigoPaciente =pacient.Id
+                             
+                             
+
+                         }).ToList();
+            ViewBag.diagnostico = query;
+
+
             var paciente = await _context.Paciente
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (paciente == null)
@@ -74,6 +94,25 @@ namespace ProjectCalidadSoft.Controllers
             {
                 return NotFound();
             }
+
+            List<QueryDiagnostico> query = (from diag in _context.Set<DiagnosticoMedico>()
+                                            join pacient in _context.Set<Paciente>()
+                                                on diag.IdPaciente equals pacient.Id
+                                            join cie in _context.Set<Cie10>()
+                                                on diag.IdCie10 equals cie.Codigo
+                                            where (pacient.Id == id)
+
+                                            select new QueryDiagnostico
+                                            {
+                                                descripcion = cie.Descripcion,
+                                                fecha = diag.Fecha,
+                                                codigoCie = cie.Codigo,
+                                                codigoPaciente = pacient.Id
+
+
+
+                                            }).ToList();
+            ViewBag.diagnostico = query;
 
             var paciente = await _context.Paciente.FindAsync(id);
             if (paciente == null)
