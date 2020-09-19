@@ -4,11 +4,22 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+    <div class="row">
+        <div class="col d-flex justify-content-start">
+            <h1>Listado de Pacientes</h1>
+        </div>
+        <div class="col d-flex justify-content-end">
+
+            <p>
+                @*a asp-action="Create">Create New</a>*@
+                <a class="btn btn-primary btn-lg" asp-action="Create" role="button">Nuevo Paciente</a>
+            </p>
+        </div>
+     
+    </div>    
+   
 <div class="table-responsive">
     <table class="table  table-hover">
         <thead>

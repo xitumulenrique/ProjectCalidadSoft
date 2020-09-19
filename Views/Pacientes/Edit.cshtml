@@ -9,15 +9,59 @@
 <h4>Paciente</h4>
 <hr />
 
-    <ul>
-        @foreach (var std in ViewBag.diagnostico as List<ProjectCalidadSoft.Controllers.QueryDiagnostico>)
-        {
-        <li>
-            @std.codigoCie  @std.descripcion  @std.fecha
-        </li>
-        }
-    </ul>
+<div id="PlaceHolderHere"></div>
 
+<div class="card">
+    <div class="card-header text-right">
+
+        <button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addDiagnosis" data-url="@Url.Action("Create","Diagnostico", new { id = Model.Id.ToString()})">Añadir Diagnostico </button>
+        
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Diagnosticos del Paciente @Model.Nombre</h5>
+        <ul>
+            @foreach (var std in ViewBag.diagnostico as List<ProjectCalidadSoft.Controllers.QueryDiagnostico>)
+            {
+                <li>
+                    @std.codigoCie  @std.descripcion  @std.fecha
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+<hr />
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Message:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @*  Navegacion delPaciente *@
@@ -34,93 +78,155 @@
 </ul>
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-        <div class="row">
-            <div class="col-md-4">
+    
+        <hr />
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8">
                 <form asp-action="Edit">
+
+
+
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <input type="hidden" asp-for="Id" />
-                    <div class="form-group">
-                        <label asp-for="Nombre" class="control-label"></label>
-                        <input asp-for="Nombre" class="form-control" />
-                        <span asp-validation-for="Nombre" class="text-danger"></span>
+
+                    <div class="form-row"></div>
+                    <div id="accordion">
+                        <div class="card bg-light">
+                            <div class="card-header">Header</div>
+                            <div class="card-body">
+                                <div class="form-row">
+
+                                    <div class="form-group col-md-6 mb-3 ">
+                                        <label asp-for="Nombre" class="control-label"></label>
+                                        <input asp-for="Nombre" class="form-control" />
+                                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group col-md-6 mb-3">
+                                        <label asp-for="Apellidos" class="control-label"></label>
+                                        <input asp-for="Apellidos" class="form-control" />
+                                        <span asp-validation-for="Apellidos" class="text-danger"></span>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-8">
+                                        <label asp-for="Correo" class="control-label"></label>
+                                        <input asp-for="Correo" class="form-control" />
+                                        <span asp-validation-for="Correo" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label asp-for="Telefono" class="control-label"></label>
+                                        <input asp-for="Telefono" class="form-control" />
+                                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                                    </div>
+
+
+
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="LugarNacimiento" class="control-label"></label>
+                                    <input asp-for="LugarNacimiento" class="form-control" />
+                                    <span asp-validation-for="LugarNacimiento" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-row">
+
+                                    <div class="form-group col-md-8 mb-3">
+                                        <label asp-for="FechaNacimieto" class="control-label"></label>
+                                        <input asp-for="FechaNacimieto" class="form-control" />
+                                        <span asp-validation-for="FechaNacimieto" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-4 mb-3">
+                                        <label asp-for="Sexo" class="control-label"></label>
+                                        <input asp-for="Sexo" class="form-control" />
+                                        <span asp-validation-for="Sexo" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Ocupacion" class="control-label"></label>
+                                    <input asp-for="Ocupacion" class="form-control" />
+                                    <span asp-validation-for="Ocupacion" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Apellidos" class="control-label"></label>
-                        <input asp-for="Apellidos" class="form-control" />
-                        <span asp-validation-for="Apellidos" class="text-danger"></span>
+
+                    <hr />
+
+
+                    <div class="card bg-light ">
+
+                        <div class="card-header"> Estatus Paciente </div>
+
+                        <div class="card-body">
+
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6 mb-3">
+                                    <label asp-for="TipoPaciente" class="control-label"></label>
+                                    <input asp-for="TipoPaciente" class="form-control" />
+                                    <span asp-validation-for="TipoPaciente" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group  col-md-6 mb-3">
+                                    <label asp-for="TipoSangre" class="control-label"></label>
+                                    <input asp-for="TipoSangre" class="form-control" />
+                                    <span asp-validation-for="TipoSangre" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6 mb-3">
+                                    <label asp-for="Peso" class="control-label"></label>
+                                    <input asp-for="Peso" class="form-control" />
+                                    <span asp-validation-for="Peso" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group col-md-6 mb-3">
+                                    <label asp-for="Altura" class="control-label"></label>
+                                    <input asp-for="Altura" class="form-control" />
+                                    <span asp-validation-for="Altura" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6 mb-3">
+                                    <label asp-for="Estado" class="control-label"></label>
+                                    <input asp-for="Estado" class="form-control" />
+                                    <span asp-validation-for="Estado" class="text-danger"></span>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Sexo" class="control-label"></label>
-                        <input asp-for="Sexo" class="form-control" />
-                        <span asp-validation-for="Sexo" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="LugarNacimiento" class="control-label"></label>
-                        <input asp-for="LugarNacimiento" class="form-control" />
-                        <span asp-validation-for="LugarNacimiento" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="FechaNacimieto" class="control-label"></label>
-                        <input asp-for="FechaNacimieto" class="form-control" />
-                        <span asp-validation-for="FechaNacimieto" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Ocupacion" class="control-label"></label>
-                        <input asp-for="Ocupacion" class="form-control" />
-                        <span asp-validation-for="Ocupacion" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="TipoPaciente" class="control-label"></label>
-                        <input asp-for="TipoPaciente" class="form-control" />
-                        <span asp-validation-for="TipoPaciente" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Telefono" class="control-label"></label>
-                        <input asp-for="Telefono" class="form-control" />
-                        <span asp-validation-for="Telefono" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Correo" class="control-label"></label>
-                        <input asp-for="Correo" class="form-control" />
-                        <span asp-validation-for="Correo" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ContactoFamiliares" class="control-label"></label>
-                        <input asp-for="ContactoFamiliares" class="form-control" />
-                        <span asp-validation-for="ContactoFamiliares" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="TipoSangre" class="control-label"></label>
-                        <input asp-for="TipoSangre" class="form-control" />
-                        <span asp-validation-for="TipoSangre" class="text-danger"></span>
-                    </div>
+
+
+
+
                     <div class="form-group">
                         <label asp-for="Tutor" class="control-label"></label>
                         <input asp-for="Tutor" class="form-control" />
                         <span asp-validation-for="Tutor" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Estado" class="control-label"></label>
-                        <input asp-for="Estado" class="form-control" />
-                        <span asp-validation-for="Estado" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Peso" class="control-label"></label>
-                        <input asp-for="Peso" class="form-control" />
-                        <span asp-validation-for="Peso" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Altura" class="control-label"></label>
-                        <input asp-for="Altura" class="form-control" />
-                        <span asp-validation-for="Altura" class="text-danger"></span>
-                    </div>
+
+
+
+
                     <div class="form-group">
                         <input type="submit" value="Save" class="btn btn-primary" />
                     </div>
+
                 </form>
             </div>
         </div>
-
 
     </div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>

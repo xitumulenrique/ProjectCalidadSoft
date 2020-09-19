@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ProjectCalidadSoft.Data;
 using ProjectCalidadSoft.Models;
 
@@ -47,11 +48,14 @@ namespace ProjectCalidadSoft.Controllers
         }
 
         // GET: Diagnostico/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
             ViewData["IdCie10"] = new SelectList(_context.Cie10, "Codigo", "Codigo");
-            ViewData["IdPaciente"] = new SelectList(_context.Paciente, "Id", "Id");
-            return View();
+            //ViewData["IdPaciente"] = new SelectList(_context.Paciente, "Id", "Id");
+            ViewData["IdPaciente"] = id;
+            
+            DiagnosticoMedico diag =  new DiagnosticoMedico();
+            return View("PopupDiagnostico",diag);
         }
 
         // POST: Diagnostico/Create

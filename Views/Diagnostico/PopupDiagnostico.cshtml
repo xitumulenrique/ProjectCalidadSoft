@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model ProjectCalidadSoft.Models.DiagnosticoMedico
+@{
+}
+
+
+
+<div class="modal fade" id="addDiagnosis" @* tabindex="-1" role="dialog" aria-labelledby="addDiagnosisLabel" aria-hidden="true" *@>
+    <div class="modal-dialog" @* role="document"*@>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addDiagnosisLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" @*aria-label="Close"*@>
+                    <span @*aria-hidden="true"*@>@*&times;*@ x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="IdPaciente" class="control-label"></label>
+                        @*<select asp-for="IdPaciente" class="form-control" asp-items="ViewBag.IdPaciente"></select>*@
+                        <input  type="text" asp-for="IdPaciente" class="form-control" value="@ViewBag.IdPaciente" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IdCie10" class="control-label"></label>
+                        <select asp-for="IdCie10" class="form-control" asp-items="ViewBag.IdCie10"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Fecha" class="control-label"></label>
+                        <input asp-for="Fecha" class="form-control" />
+                        <span asp-validation-for="Fecha" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+
+                
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-save="modal">save</button>
+                
+            </div>
+        </div>
+    </div>
+</div>
