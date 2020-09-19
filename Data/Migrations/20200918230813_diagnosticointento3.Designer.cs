@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectCalidadSoft.Data;
 
 namespace ProjectCalidadSoft.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200918230813_diagnosticointento3")]
+    partial class diagnosticointento3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -264,12 +266,20 @@ namespace ProjectCalidadSoft.Data.Migrations
                     b.Property<int>("IdPaciente")
                         .HasColumnType("int");
 
+                    b.Property<string>("Cie10Codigo")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("PacienteId")
+                        .HasColumnType("int");
+
                     b.HasKey("IdCie10", "IdPaciente");
 
-                    b.HasIndex("IdPaciente");
+                    b.HasIndex("Cie10Codigo");
+
+                    b.HasIndex("PacienteId");
 
                     b.ToTable("DiagnosticoMedico");
                 });
@@ -386,15 +396,11 @@ namespace ProjectCalidadSoft.Data.Migrations
                 {
                     b.HasOne("ProjectCalidadSoft.Models.Cie10", "Cie10")
                         .WithMany("DiagnosticoMedico")
-                        .HasForeignKey("IdCie10")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Cie10Codigo");
 
                     b.HasOne("ProjectCalidadSoft.Models.Paciente", "Paciente")
                         .WithMany("DiagnosticoMedico")
-                        .HasForeignKey("IdPaciente")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PacienteId");
                 });
 #pragma warning restore 612, 618
         }

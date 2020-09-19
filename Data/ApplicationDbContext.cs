@@ -27,9 +27,24 @@ namespace ProjectCalidadSoft.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<DiagnosticoMedico>()
-            .HasNoKey();
+            modelBuilder.Entity<DiagnosticoMedico>().HasKey(s => new { s.IdCie10, s.IdPaciente });
 
+            modelBuilder.Entity<DiagnosticoMedico>()
+             .HasOne(sc => sc.Cie10)
+             .WithMany(s => s.DiagnosticoMedico)
+             .HasForeignKey(sc => sc.IdCie10);
+
+            modelBuilder.Entity<DiagnosticoMedico>()
+                .HasOne(sc => sc.Paciente)
+                .WithMany(c => c.DiagnosticoMedico)
+                .HasForeignKey(sc => sc.IdPaciente);
+
+
+            /*
+              base.OnModelCreating(modelBuilder);
+              modelBuilder.Entity<DiagnosticoMedico>()
+              .HasNoKey();
+              */
         }
     }
 }
