@@ -7,7 +7,8 @@ namespace ProjectCalidadSoft.Models
 {
     public partial class DiagnosticoMedico
     {
-
+        [Key]
+        public int IdDiagnostico { get; set; }
        
         public int IdPaciente { get; set; }
         public Paciente Paciente{ get; set; }
