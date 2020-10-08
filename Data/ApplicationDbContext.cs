@@ -21,6 +21,8 @@ namespace ProjectCalidadSoft.Data
         public virtual DbSet<ContactoFamiliar> ContactoFamiliar { get; set; }
         public virtual DbSet<DiagnosticoMedico> DiagnosticoMedico { get; set; }
         public virtual DbSet<Cie10> Cie10{ get; set; }
+        public virtual DbSet<Prescripcion> Prescripcion { get; set; }
+        public virtual DbSet<Medicamento> Medicamento { get; set; }
 
 
 
@@ -39,6 +41,10 @@ namespace ProjectCalidadSoft.Data
                 .WithMany(c => c.DiagnosticoMedico)
                 .HasForeignKey(sc => sc.IdPaciente);
 
+            modelBuilder.Entity<Prescripcion>()
+                .HasOne(sc => sc.DiagnosticoMedico)
+                .WithMany(c => c.Prescripcion)
+                .HasForeignKey(sc => sc.IdDiagnostico);
 
             /*
               base.OnModelCreating(modelBuilder);

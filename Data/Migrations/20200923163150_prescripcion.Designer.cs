@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectCalidadSoft.Data;
 
 namespace ProjectCalidadSoft.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200923163150_prescripcion")]
+    partial class prescripcion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -263,9 +265,6 @@ namespace ProjectCalidadSoft.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Descripcion")
-                        .HasColumnType("Text");
-
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
@@ -310,17 +309,12 @@ namespace ProjectCalidadSoft.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Apellidos")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ContactoFamiliares")
                         .HasColumnType("int");
 
                     b.Property<string>("Correo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Dpi")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Estado")
@@ -333,7 +327,6 @@ namespace ProjectCalidadSoft.Data.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Nombre")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Ocupacion")

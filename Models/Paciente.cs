@@ -17,14 +17,42 @@ namespace ProjectCalidadSoft.Models
         }
         
         public int Id { get; set; }
+
+        /* NOMBRES*/
+        [Display(Name = "Nombre")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [RegularExpression(@"[a-zA-Z]*|[a-zA-Z]* [a-zA-Z]* ",
+     ErrorMessage = "Dato incorrecto.")]
         public string Nombre { get; set; }
+
+
+        /* APELLIDOS*/
+        [Display(Name = "Apellidos")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [RegularExpression(@"[a-zA-Z]*|[a-zA-Z]* [a-zA-Z]* ",
+           ErrorMessage = "Dato incorrecto.")]
+
         public string Apellidos { get; set; }
+
+
+
+        [Display(Name = "Dpi")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [RegularExpression(@"([0-9]{4}\s[0-9]{5}\s[0-9]{4})|[0-9]{13}",
+            ErrorMessage = "Dato incorrecto.")]
+
+        public string Dpi { get; set; }
+
         public string Sexo { get; set; }
 
 
         [Column(TypeName = "text")]
         public string LugarNacimiento { get; set; }
 
+
+        [Display(Name = "FechaNacimiento")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [DataType(DataType.Date)]
         public DateTime FechaNacimieto { get; set; }
         public string Ocupacion { get; set; }
         public int? TipoPaciente { get; set; }

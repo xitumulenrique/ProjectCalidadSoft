@@ -76,7 +76,7 @@ namespace ProjectCalidadSoft.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellidos,Sexo,LugarNacimiento,FechaNacimieto,Ocupacion,TipoPaciente,Telefono,Correo,ContactoFamiliares,TipoSangre,Tutor,Estado,Peso,Altura")] Paciente paciente)
+        public async Task<IActionResult> Create([Bind("Id,Dpi,Nombre,Apellidos,Sexo,LugarNacimiento,FechaNacimieto,Ocupacion,TipoPaciente,Telefono,Correo,ContactoFamiliares,TipoSangre,Tutor,Estado,Peso,Altura")] Paciente paciente)
         {
             if (ModelState.IsValid)
             {

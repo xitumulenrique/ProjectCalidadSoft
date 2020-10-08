@@ -5,12 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ProjectCalidadSoft</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="~/css/style2.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css"/>
+
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-bars fa-2x"> </i>
+                    <!--<span class="align-bottom">OPCIONES</span>-->
+                </button>
+                <div class="mx-auto" style="width:50px;">
+
+                </div>
+
+
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><h4> Clinica Medica </h4> </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -31,18 +44,107 @@
         </nav>
     </header>
     
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+        <div class="row">
+            <div class="col-0 ">
+                <nav id="sidebar" class="mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
+                    <div id="mCSB_1" class="mCustomScrollBox mCS-minimal mCSB_vertical mCSB_outside" style="max-height: none;" tabindex="0">
+                        <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                            <div class="sidebar-header text-center" >
+                                <h3>Menu</h3>
+                            </div>
+
+                            <ul class="list-unstyled components">
+                                <li>
+                                    <a class="nav-link" asp-area="" asp-controller="Pacientes" asp-action="Index">Pacientes</a>
+                                </li>
+                                <li>
+                                     <a class="nav-link " asp-area="" asp-controller="Cie10" asp-action="Index">Enfermedades</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link " asp-area="" asp-controller="Diagnostico" asp-action="Index">Diagnositico</a>
+                                </li>
+                                <li class="table-active">
+                                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                                        <li>
+                                            <a href="#">Home 1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Home 2</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Home 3</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">About</a>
+                                </li>
+                                <li>
+                                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+                                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                                        <li>
+                                            <a href="#">Page 1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Page 2</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Page 3</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Portfolio</a>
+                                </li>
+                                <li>
+                                    <a href="#">Contact</a>
+                                </li>
+                            </ul>
+
+                            <ul class="list-unstyled CTAs">
+                                <li>
+                                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                                </li>
+                                <li>
+                                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; height: 0px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div>
+                </nav>
+
+            </div>
+            <div class="col-10" >
+                <div class="container ">
+                    <main role="main" class="pb-3">
+
+                        @RenderBody()
+                    </main>
+                </div>
+
+            </div>
+
+        </div>
+        
+
+
+   
+    <!--main content wrapper-->
+
+
+   
 
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2020 - ProjectCalidadSoft - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)

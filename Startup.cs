@@ -43,6 +43,8 @@ namespace ProjectCalidadSoft
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                app.UseBrowserLink();
+                
             }
             else
             {
