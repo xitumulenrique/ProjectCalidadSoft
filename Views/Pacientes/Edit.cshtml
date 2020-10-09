@@ -14,19 +14,22 @@
 <div class="card">
     <div class="card-header text-right">
 
-        <button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addDiagnosis" data-url="@Url.Action("Create","Diagnostico", new { id = Model.Id.ToString()})">Añadir Diagnostico </button>
+        <button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addDiagnosis" data-url="@Url.Action("CreatePopup","Diagnostico", new { id = Model.Id.ToString()})">Añadir Diagnostico </button>
         
     </div>
     <div class="card-body">
         <h5 class="card-title">Diagnosticos del Paciente @Model.Nombre</h5>
+        @if (ViewBag.diagnostico != null) {
         <ul>
-            @foreach (var std in ViewBag.diagnostico as List<ProjectCalidadSoft.Controllers.QueryDiagnostico>)
-            {
-                <li>
-                    @std.codigoCie  @std.descripcion  @std.fecha
-                </li>
-            }
+        @foreach (var std in ViewBag.diagnostico as List<ProjectCalidadSoft.Controllers.QueryDiagnostico>)
+        {
+            <li>
+                @std.codigoCie  @std.descripcion  @std.fecha
+            </li>
+        }
+        
         </ul>
+        }
     </div>
 </div>
 <hr />
@@ -67,15 +70,16 @@
 @*  Navegacion delPaciente *@
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos del Paciente</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Historial</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
     </li>
 </ul>
+
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
     
@@ -83,8 +87,6 @@
         <div class="row d-flex justify-content-center">
             <div class="col-md-8">
                 <form asp-action="Edit">
-
-
 
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 

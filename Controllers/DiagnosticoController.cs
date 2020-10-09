@@ -28,7 +28,7 @@ namespace ProjectCalidadSoft.Controllers
         }
 
         // GET: Diagnostico/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -38,7 +38,7 @@ namespace ProjectCalidadSoft.Controllers
             var diagnosticoMedico = await _context.DiagnosticoMedico
                 .Include(d => d.Cie10)
                 .Include(d => d.Paciente)
-                .FirstOrDefaultAsync(m => m.IdCie10 == id);
+                .FirstOrDefaultAsync(m => m.IdDiagnostico == id);
             if (diagnosticoMedico == null)
             {
                 return NotFound();
@@ -50,13 +50,27 @@ namespace ProjectCalidadSoft.Controllers
         // GET: Diagnostico/Create
         public IActionResult Create(int? id)
         {
+            ViewData["IdCie10"] = new SelectList(_context.Cie10, "Codigo", "Descripcion");
+            ViewData["IdPaciente"] = new SelectList(_context.Paciente, "Id", "Nombre");
+            //ViewData["IdPaciente"] = id;
+           // ViewData["IdPaciente"] = id;
+            
+            DiagnosticoMedico diag =  new DiagnosticoMedico();
+            return View(diag);
+        }
+
+        // GET: Diagnostico/CreatePopup
+        public IActionResult CreatePopup(int? id)
+        {
             ViewData["IdCie10"] = new SelectList(_context.Cie10, "Codigo", "Codigo");
             //ViewData["IdPaciente"] = new SelectList(_context.Paciente, "Id", "Id");
             ViewData["IdPaciente"] = id;
-            
-            DiagnosticoMedico diag =  new DiagnosticoMedico();
-            return View("PopupDiagnostico",diag);
+
+            DiagnosticoMedico diag = new DiagnosticoMedico();
+            return PartialView("PopupDiagnostico", diag);
         }
+
+
 
         // POST: Diagnostico/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -77,7 +91,7 @@ namespace ProjectCalidadSoft.Controllers
         }
 
         // GET: Diagnostico/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -132,7 +146,7 @@ namespace ProjectCalidadSoft.Controllers
         }
 
         // GET: Diagnostico/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -142,7 +156,7 @@ namespace ProjectCalidadSoft.Controllers
             var diagnosticoMedico = await _context.DiagnosticoMedico
                 .Include(d => d.Cie10)
                 .Include(d => d.Paciente)
-                .FirstOrDefaultAsync(m => m.IdCie10 == id);
+                .FirstOrDefaultAsync(m => m.IdDiagnostico == id);
             if (diagnosticoMedico == null)
             {
                 return NotFound();
@@ -154,7 +168,7 @@ namespace ProjectCalidadSoft.Controllers
         // POST: Diagnostico/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
             var diagnosticoMedico = await _context.DiagnosticoMedico.FindAsync(id);
             _context.DiagnosticoMedico.Remove(diagnosticoMedico);

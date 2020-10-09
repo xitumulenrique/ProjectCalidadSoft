@@ -55,11 +55,14 @@ namespace ProjectCalidadSoft.Models
         [DataType(DataType.Date)]
         public DateTime FechaNacimieto { get; set; }
         public string Ocupacion { get; set; }
+       
         public int? TipoPaciente { get; set; }
         public string Telefono { get; set; }
         public string Correo { get; set; }
         public int? ContactoFamiliares { get; set; }
-        public int? TipoSangre { get; set; }
+        [Display(Name = "TipoSangre")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        public string TipoSangre { get; set; }
         public int? Tutor { get; set; }
         public string Estado { get; set; }
         public string Peso { get; set; }
